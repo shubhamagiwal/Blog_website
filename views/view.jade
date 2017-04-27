@@ -1,0 +1,12 @@
+extends layout
+
+block content
+	form(action='/new',method='POST')
+		br
+		input(type="text",name="post_title",placeholder="enter the post title")
+		br
+		input(type="text",name="post_slug",placeholder="enter the link you want")
+		br
+		textarea(rows="10" cols="80",name="post_body")
+		br
+		input(type="submit",text="submit")

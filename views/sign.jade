@@ -1,0 +1,14 @@
+extends layout
+
+block content
+	form(action='/register',method="post")
+		br
+		input(type="text",name="user",placeholder="User Name")
+		br
+		input(type="text",name="name",placeholder="Name")
+		br
+		input(type="email",name="email",placeholder="Email")
+		br
+		input(type="password",name="password",placeholder="password")
+		br
+		input(type="submit",text="Register")
