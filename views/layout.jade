@@ -3,5 +3,17 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css', rel='stylesheet')
   body
+    block navbar
+    nav.navbar.navbar-default(role="navigation")
+      .navbar-inverse
+        div.container-fluid
+          div.nav.navbar-header
+            a.navbar-brand(href="/") Website Name
+          ul.nav.navbar-nav.navbar-right
+            li.active: a(href="/") Home
+            li: a(href="/login") Login
+            li: a(href="/contact") Contact Us
     block content
+

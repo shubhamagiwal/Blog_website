@@ -13,6 +13,9 @@ var app = express();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var Post = require("./model/model")
+var session = require('express-session');
+app.use(session({secret: 'ssshhhhh'}));
+var sess;
 //mongoose connection for the app
 mongoose.connect(dbURL,function(err,res)
     {
@@ -27,7 +30,7 @@ mongoose.connect(dbURL,function(err,res)
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-passport.use(new LocalStrategy(function(username,password,done)
+/*passport.use(new LocalStrategy(function(username,password,done)
 {
     findByUsername(username,function(err,user)
     {
@@ -47,7 +50,10 @@ passport.use(new LocalStrategy(function(username,password,done)
     }
 }));
 app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.session());*/
+app.use('/js', express.static(__dirname + '/node_modules/jade-bootstrap/dist/js')); // redirect bootstrap JS
+app.use('/js', express.static(__dirname + '/node_modules/jquery/dist')); // redirect JS jQuery
+app.use('/css', express.static(__dirname + '/node_modules/jade-bootstrap/dist/css')); 
 app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -55,35 +61,32 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.get('/',routes.index);
+app.get('/',function(req,res)
+{
+    var sess=req.session;
+    console.log(sess);
+    res.redirect('/index');
+});
 
+app.get('/index',routes.index);
 //this is the new user login page
 app.post('/new',routes.new_post);
 app.get('/new',routes.serve_post);
 //app.use('/user',routes.users);
 app.post('/register',users.register);
 app.get('/sign-up',users.sign_up);
+
+
+//this is for contact form wherever we need it later
 app.post('/contact',mail.contact);
 app.get('/contact',function(req,res)
 {
     res.render('contact',{title:'contact'});
-})
-app.post('/login',
-    passport.authenticate('local',{failureRedirect:'/login',failureFlash:true}),
-    function(res,req)
-    {
-        res.redirect("/");
-    }
-    );
-app.post('/login',function(req,res)
-{
-    console.log("Hello");
 });
 
-app.get('/login:username',function(req,res)
-    {
-        console.log(req.param.username);
-    });    //users.login);
+app.post('/login',users.login_check);
+
+app.get('/login',users.login);
 /// catch 404 and forwarding to error handler
 app.get('/link/:post_snug',function(req,res)
     {

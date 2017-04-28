@@ -5,3 +5,7 @@ block content
   p Post Created #{post.create_at}
   p #{post.title}
   p #{post.body}
+  form(action="/comment_add",method="post")
+    textarea(rows="10" col="80")
+    br
+    button.btn.btn-default(type="submit") Add Comment 
