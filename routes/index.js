@@ -9,12 +9,20 @@ exports.index=function(req, res) {
   	{
   		console.log(err);
   	}
+  	console.log(req.session.authenticated);
   	res.render('index', { title: 'Blog' ,posts:posts});	
   });
 };
 exports.serve_post=function(req,res)
 {
-	res.render('view',{title:'Add new'});
+	if(!req.session.authenticated)
+	{
+		res.redirect('/login');
+	}
+	else
+	{
+		res.render('view',{title:'Add new'});
+	}
 }
 exports.new_post = function(req,res)
 {

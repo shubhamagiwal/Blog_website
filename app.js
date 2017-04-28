@@ -14,7 +14,9 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var Post = require("./model/model")
 var session = require('express-session');
-app.use(session({secret: 'ssshhhhh'}));
+app.set('trust proxy',1);
+app.use(session({secret: 'ssshhhhh',
+cookie:{maxAge:60000}}));
 var sess;
 //mongoose connection for the app
 mongoose.connect(dbURL,function(err,res)
@@ -84,9 +86,16 @@ app.get('/contact',function(req,res)
     res.render('contact',{title:'contact'});
 });
 
-app.post('/login',users.login_check);
 
+//This is for logout and logging in the user , so that we can perform various functions later
+app.post('/login',users.login_check);
 app.get('/login',users.login);
+app.get('/logout',function(req,res)
+{
+    delete req.session.authenticated;
+    res.redirect('/index');
+});
+
 /// catch 404 and forwarding to error handler
 app.get('/link/:post_snug',function(req,res)
     {

@@ -1,8 +1,15 @@
 extends layout 
 
 block content
-  form(method="post",action="/contact")
-    br
-    input(name="Email",type="email",placeholder="a@xyz.com")
-    br
-    input(type="submit",text="SEND")
+  .main-container
+    .row
+      .col-md-6.col-md-offset-3
+        .jumbotron
+          h2.form-signin-heading CONTACT US
+          form.form-signin(method="post",action="/contact")
+            input.input-lg(name="Email",type="email",placeholder="Email")
+            br
+            br
+            textarea.form-control(row="80",col="10",name="subject",placeholder="Hi this is amazing website")
+            br
+            button.btn(type="submit") SEND

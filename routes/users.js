@@ -44,7 +44,6 @@ exports.sign_up = function(req,res)
 
 exports.login = function(req,res)
 {
-	//console.log(req.params.);
 	res.render('login',{title:'Login'});
 }
 
@@ -70,6 +69,7 @@ exports.login_check= function(req,res,callback)
 			//this is when we have login session ready
 			console.log('login success');
 			//res.sess.email=post.email;
+			req.session.authenticated = true;
 			res.redirect('/index');
 		}
 		else
