@@ -25,6 +25,19 @@ var postSchema = Schema({
 		type:Number,
 		default:0
 	},
+	//here we have tried to add functionality for each user
+	postedBy:{
+		type:mongoose.Schema.Types.ObjectId,
+		ref: 'User'
+	},
+	comments:[
+	{
+		type:String,
+		postedBy:{
+			type:mongoose.Schema.Types.ObjectId,
+			ref : 'User'
+		}
+	}]
 });
 postSchema.methods.update_hit=function()
 {

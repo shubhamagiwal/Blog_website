@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var User = require("./../model/user");//this is where we get all values needed for the user
 
-exports.register = function(req,res)
+exports.register = function(req,res,next)
 {
 	var user = new User(
 		{
@@ -28,8 +28,10 @@ exports.register = function(req,res)
 	    			return res.status(500).send({success:false,message:"User already exist"});
 	    		}
 	    	}
-	    	sess.email=req.body.email;
-	    	res.redirect('/index');
+	    	else
+	    	{
+	    		res.redirect('/');
+	    	}
 	    	/*
 	    	res.json({
 	    		sucess:true
@@ -37,29 +39,41 @@ exports.register = function(req,res)
 	    });
 };
 
-exports.sign_up = function(req,res)
+exports.isAuthenticated = function(req,res,next)
+{
+	console.log(req.session.authenticated);
+	if(req.session.authenticated)
+	{
+		console.log("*")
+		next();
+	}
+	else
+	{
+		console.log("**");
+		res.redirect('/login');
+	}
+}
+
+exports.sign_up = function(req,res,next)
 {
 	res.render('sign',{title:'New User'});
 }
 
-exports.login = function(req,res)
+exports.login = function(req,res,next)
 {
-	res.render('login',{title:'Login'});
+	res.render('login',{title:'Login',login:req.session.authenticated});
 }
 
-exports.login_check= function(req,res,callback)
+exports.login_check= function(req,res,next)
 {
-	/*if(req.sess.email)
-	{
-		res.redirect('/index');
-	}*/
+	var sess= req.session;
+	console.log(sess);
 	User.findOne({user:req.body.username},function(err,post)
 	{
 		if(err)
 		{
 			throw err;
 		}
-		console.log(req.body.username);
 		if(req.body.password===undefined)
 		{
 			res.status(300).redirect('/login');
@@ -68,9 +82,10 @@ exports.login_check= function(req,res,callback)
 		{
 			//this is when we have login session ready
 			console.log('login success');
-			//res.sess.email=post.email;
-			req.session.authenticated = true;
-			res.redirect('/index');
+			req.session.user_id=post._id;
+			req.session.user = post;
+			console.log(req.session.cookie.path);
+			res.redirect(req.session.cookie.path);
 		}
 		else
 		{

@@ -1,7 +1,7 @@
 //var express = require('express');
 //var router = express.Router();
 var Post = require("./../model/model");
-
+var User = require("./../model/user");
 exports.index=function(req, res) {
   Post.find(function(err,posts)
   {
@@ -9,29 +9,21 @@ exports.index=function(req, res) {
   	{
   		console.log(err);
   	}
-  	console.log(req.session.authenticated);
-  	res.render('index', { title: 'Blog' ,posts:posts});	
+  	res.render('index', { title: 'Blog' ,posts:posts,login:req.session.authenticated});	
   });
 };
-exports.serve_post=function(req,res)
+exports.serve_post=function(req,res,next)
 {
-	if(!req.session.authenticated)
-	{
-		res.redirect('/login');
-	}
-	else
-	{
-		res.render('view',{title:'Add new'});
-	}
+	res.render('view',{title:'Add new',login:req.session.authenticated});
 }
-exports.new_post = function(req,res)
+exports.new_post = function(req,res,next)
 {
-		console.log(req.body.post_title);
-		var post = new Post({
-			title:req.body.post_title,
-			body:req.body.post_body,
-			slug:req.body.post_slug
-		});
+	var post = new Post({
+		title:req.body.post_title,
+		body:req.body.post_body,
+		slug:req.body.post_slug,
+		postedBy:req.session.id
+	});
 
 		post.save(function(err)
 		{
@@ -40,10 +32,12 @@ exports.new_post = function(req,res)
 				console.log(err);
 			}
 			else
+			{
 				res.redirect('/');
+			}
 		});
 };
-exports.link=function(req,res)
+exports.link=function(req,res,next)
 {
 	console.log(req.params.post_link);
 }
