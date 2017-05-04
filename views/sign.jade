@@ -1,9 +1,9 @@
 extends layout
 
 block content
-	form(action='/register',method="post")
+	form(action='/register',enctype="mulitpart/image",method="post")
 		br
-		input(type="text",name="user",placeholder="User Name")
+		input(type="text",name="username",placeholder="User Name")
 		br
 		input(type="text",name="name",placeholder="Name")
 		br
@@ -11,4 +11,4 @@ block content
 		br
 		input(type="password",name="password",placeholder="password")
 		br
-		input(type="submit",text="Register")
+		input(type="submit",value="Upload Image",text="Register")

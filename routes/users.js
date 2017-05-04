@@ -6,7 +6,7 @@ exports.register = function(req,res,next)
 {
 	var user = new User(
 		{
-			user : req.body.user,
+			user : req.body.username,
 			name : req.body.name,
 			email: req.body.email
 		});
@@ -25,17 +25,13 @@ exports.register = function(req,res,next)
 	    		if(err.name==='MongoError' && err.code === 11000)
 	    		{
 	    			//duplicate username
-	    			return res.status(500).send({success:false,message:"User already exist"});
+	    			res,redirect("/sign-up",{message:"User already exist"});
 	    		}
 	    	}
 	    	else
 	    	{
 	    		res.redirect('/');
 	    	}
-	    	/*
-	    	res.json({
-	    		sucess:true
-	    	});*/
 	    });
 };
 
@@ -76,8 +72,14 @@ exports.login_check= function(req,res,next)
 		}
 		if(req.body.password===undefined)
 		{
-			res.status(300).redirect('/login');
+			res.redirect('/sign-up',{message:"No password entered"});
 		}
+	    if(user)
+		{
+			//req.flash('info',)
+			res.redirect('/sign-up',{message:"User already exist!!"});
+		}
+		return next();
 		if(post!=null && post.validatePassword(req.body.password))
 		{
 			//this is when we have login session ready
@@ -93,3 +95,4 @@ exports.login_check= function(req,res,next)
 		}
 	});
 }
+//this function is written to see if the user exist in the database of not 

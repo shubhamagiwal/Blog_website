@@ -12,6 +12,10 @@ exports.index=function(req, res) {
   	res.render('index', { title: 'Blog' ,posts:posts,login:req.session.authenticated});	
   });
 };
+exports.add_like = function(req,res,next)
+{
+	console.log("I am here");
+}
 exports.serve_post=function(req,res,next)
 {
 	res.render('view',{title:'Add new',login:req.session.authenticated});
@@ -37,7 +41,4 @@ exports.new_post = function(req,res,next)
 			}
 		});
 };
-exports.link=function(req,res,next)
-{
-	console.log(req.params.post_link);
-}
+

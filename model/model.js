@@ -25,6 +25,16 @@ var postSchema = Schema({
 		type:Number,
 		default:0
 	},
+	like:[{
+		value:{
+			type:Number,
+			default:0
+		},
+		likedby:{
+			type:mongoose.Schema.Types.ObjectId,
+			ref: 'User'
+		}
+	}],
 	//here we have tried to add functionality for each user
 	postedBy:{
 		type:mongoose.Schema.Types.ObjectId,

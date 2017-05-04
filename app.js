@@ -17,13 +17,25 @@ var Post = require("./model/model");
 var user = require("./model/user");
 var session = require('express-session');
 var flash = require('connect-flash');
+var multer = require('multer');
+var MongoStore = require("connect-mongo")(session);
 //const RedisStore = require("connect-redis")(session);
 app.set('trust proxy',1);
-app.use(session({
-    secret: "TEST",
-    resave:true,
-    saveUninitialized: true}));
-var sess;
+app.use(cookieParser());
+
+
+var storage = multer.diskStorage({
+    destination:function(req,res,next)
+    {
+        next(null,'./public/images/uploads');
+    },
+    filename:function(req,res,next)
+    {
+        next(null,file.fieldname+'-'+Date.now());
+
+    }
+});
+var upload = multer({storage:storage}).single('userPhoto');
 //mongoose connection for the app
 mongoose.connect(dbURL,function(err,res,next)
     {
@@ -34,6 +46,20 @@ mongoose.connect(dbURL,function(err,res,next)
         console.log("connected to the database");
     });
 // view engine setup
+mongoose.promise=require('bluebird');
+app.use(session({
+    secret: 'a4f8071f-c873-4447-8ee2',
+    cookie: { maxAge: 2628000000 },
+    store: new (require('express-sessions'))({
+        storage: 'mongodb',
+        instance: mongoose, // optional
+        host: 'localhost', // optional
+        port: 27017, // optional
+        db: 'test', // optional
+        collection: 'sessions', // optional
+        expire: 86400 // optional
+    })
+}));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(flash());
@@ -86,10 +112,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-//app.use(express.methodOverride());
-//app.use(app.router);
 app.get('/',routes.index);
 app.get('/index',function(req,res,next)
     {
@@ -98,7 +121,7 @@ app.get('/index',function(req,res,next)
 //this is the new user login page
 app.post('/new',routes.new_post);
 app.get('/new',users.isAuthenticated,routes.serve_post);
-app.post('/register',users.register);
+app.post('/sign-up',users.login);
 app.get('/sign-up',users.sign_up);
 
 
@@ -150,7 +173,12 @@ app.get('/logout',function(req,res,next)
                 }
         });
 });
-
+//this is the comment section which we are adding in every node
+app.post("/like",function(req,res)
+{
+    console.log("Hello");
+});
+app.get("/like",users.isAuthenticated,routes.add_like);
 /// catch 404 and forwarding to error handler
 app.get('/link/:post_snug',function(req,res,next)
     {
@@ -160,9 +188,18 @@ app.get('/link/:post_snug',function(req,res,next)
             if(err)
             {
                 console.log(err);
+                return next(err);
             }
-            post.update_hit();
-            res.render('blog',{title:"blog",post:post,login:req.session.authenticated});
+            if(!post)
+            {
+                console.log("Error");
+                return next();
+            }
+            if(post)
+            {
+                post.update_hit();
+                res.render('blog',{title:"blog",post:post,login:req.session.authenticated});
+            }
         });
     });
 
@@ -196,5 +233,8 @@ app.use(function(err, req, res, next) {
     });
 });
 
-
+app.get('*',function(req,res)
+{
+    res.send("What??",404);
+});
 module.exports = app;
