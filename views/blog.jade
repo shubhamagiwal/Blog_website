@@ -1,15 +1,24 @@
 extends layout
-
 block content
+  script.
+    $(document).ready(function(){
+      $('#like').click(function(){
+         var temp='!{post.slug}';
+         $.get('/like/'+temp);
+         var val= parseInt($('#like_post').html());
+         val=val+1;
+         $('#like_post').html(val);
+      });
+    });
   h1= title
   p Post Created #{post.create_at}
-  p #{post.title}
-  p #{post.body}
-  button.btn.btn-default(onclick="myfunction()") Like
-  script
-     $(document).ready(myfunction(){
-     console.log("*");});
-    
+  h3
+    p #{post.title}
+  .jumbotron
+    p #{post.body}
+  p Like 
+    div(id='like_post') #{post.like}
+  button.btn.btn-default(id='like') Like
   form(action="/comment_add",method="post")
     textarea(rows="10" col="80")
     br

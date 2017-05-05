@@ -38,14 +38,16 @@ exports.register = function(req,res,next)
 exports.isAuthenticated = function(req,res,next)
 {
 	console.log(req.session.authenticated);
-	if(req.session.authenticated)
+	if(req.session.authenticated==undefined)
 	{
-		console.log("*")
+		console.log("Not logged in");
+	}
+	else if(req.session.authenticated)
+	{
 		next();
 	}
 	else
 	{
-		console.log("**");
 		res.redirect('/login');
 	}
 }

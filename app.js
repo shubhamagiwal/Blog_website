@@ -19,6 +19,7 @@ var session = require('express-session');
 var flash = require('connect-flash');
 var multer = require('multer');
 var MongoStore = require("connect-mongo")(session);
+//var app1 = angular.module("myApp", []);
 //const RedisStore = require("connect-redis")(session);
 app.set('trust proxy',1);
 app.use(cookieParser());
@@ -178,7 +179,23 @@ app.post("/like",function(req,res)
 {
     console.log("Hello");
 });
-app.get("/like",users.isAuthenticated,routes.add_like);
+app.get("/like/:post_snug",users.isAuthenticated,function(req,res,next)
+    {
+        Post.update({slug:req.params.post_snug},{$inc:{like:1}},function(err,post)
+        {
+            if(err)
+            {
+                console.log(err);
+                return next(err);
+            }
+            else
+            {
+                console.log(post.like);
+                
+                return next();
+            }
+        });
+    });
 /// catch 404 and forwarding to error handler
 app.get('/link/:post_snug',function(req,res,next)
     {
@@ -197,7 +214,15 @@ app.get('/link/:post_snug',function(req,res,next)
             }
             if(post)
             {
-                post.update_hit();
+                post.update({slug:req.params.post_snug},{$inc:{hit_val:1}},function(err,post)
+                {
+                    if(err)
+                    {
+                        console.log(err);
+                        return next(err);
+                    }
+                    return next();
+                });
                 res.render('blog',{title:"blog",post:post,login:req.session.authenticated});
             }
         });

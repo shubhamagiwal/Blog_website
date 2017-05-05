@@ -6,11 +6,13 @@ a {color: black;margin: 5px; text-decoration: none;}
 
 .dropdown-menu li:hover .sub-menu {
     visibility: visible;
+    color:black;
 }
 
 .dropdown:hover .dropdown-menu {
     display: block;
     margin-top: 0;
+    color:black;
 }
 
 .dropdown-menu .sub-menu {
