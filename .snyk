@@ -1,0 +1,27 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.12.0
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:http-signature:20150122':
+    - ionic > ionic-app-lib > request > http-signature:
+        patched: '2018-07-03T08:10:23.595Z'
+    - ionic > ionic-app-lib > cordova-lib > request > http-signature:
+        patched: '2018-07-03T08:10:23.595Z'
+  'npm:lodash:20180130':
+    - cordova > cordova-common > plist > xmlbuilder > lodash:
+        patched: '2018-07-03T08:10:23.595Z'
+    - cordova > insight > inquirer > lodash:
+        patched: '2018-07-03T08:10:23.595Z'
+    - cordova > cordova-lib > plist > xmlbuilder > lodash:
+        patched: '2018-07-03T08:10:23.595Z'
+    - cordova > cordova-lib > cordova-common > plist > xmlbuilder > lodash:
+        patched: '2018-07-03T08:10:23.595Z'
+    - cordova > cordova-lib > cordova-fetch > cordova-common > plist > xmlbuilder > lodash:
+        patched: '2018-07-03T08:10:23.595Z'
+    - ionic > ionic-app-lib > cheerio > lodash:
+        patched: '2018-07-03T08:10:23.595Z'
+    - ionic > ionic-app-lib > cordova-lib > plist > xmlbuilder > lodash:
+        patched: '2018-07-03T08:10:23.595Z'
+    - ionic > ionic-app-lib > cordova-lib > cordova-common > plist > xmlbuilder > lodash:
+        patched: '2018-07-03T08:10:23.595Z'
