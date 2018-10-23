@@ -1,0 +1,27 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.12.0
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:minimatch:20160620':
+    - ionic > ionic-app-lib > archiver > file-utils > glob > minimatch:
+        patched: '2018-10-23T08:48:39.480Z'
+    - ionic > ionic-app-lib > archiver > file-utils > findup-sync > glob > minimatch:
+        patched: '2018-10-23T08:48:39.480Z'
+    - ionic > gulp > vinyl-fs > glob-stream > minimatch:
+        patched: '2018-10-23T08:48:39.480Z'
+    - ionic > ionic-app-lib > cordova-lib > cordova-js > browserify > glob > minimatch:
+        patched: '2018-10-23T08:48:39.480Z'
+    - ionic > ionic-app-lib > archiver > file-utils > minimatch:
+        patched: '2018-10-23T08:48:39.480Z'
+    - ionic > gulp > vinyl-fs > glob-watcher > gaze > globule > minimatch:
+        patched: '2018-10-23T08:48:39.480Z'
+    - ionic > gulp > vinyl-fs > glob-watcher > gaze > globule > glob > minimatch:
+        patched: '2018-10-23T08:48:39.480Z'
+  'npm:tunnel-agent:20170305':
+    - ionic > ionic-app-lib > request > tunnel-agent:
+        patched: '2018-10-23T08:48:39.480Z'
+    - ionic > ionic-app-lib > cordova-lib > request > tunnel-agent:
+        patched: '2018-10-23T08:48:39.480Z'
+    - ionic > ionic-app-lib > cordova-lib > npm > request > tunnel-agent:
+        patched: '2018-10-23T08:48:39.480Z'
