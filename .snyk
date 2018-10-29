@@ -1,0 +1,8 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.12.0
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:serve-static:20150113':
+    - ionic > ionic-app-lib > serve-static:
+        patched: '2018-10-29T10:24:41.693Z'
