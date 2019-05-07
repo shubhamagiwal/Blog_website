@@ -1,0 +1,121 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.13.3
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:debug:20170905':
+    - ionic > ionic-app-lib > finalhandler > debug:
+        patched: '2019-05-07T03:31:08.319Z'
+    - ionic > ionic-app-lib > serve-static > send > debug:
+        patched: '2019-05-07T03:31:08.319Z'
+  'npm:hawk:20160119':
+    - ionic > ionic-app-lib > cordova-lib > request > hawk:
+        patched: '2019-05-07T03:31:08.319Z'
+    - ionic > ionic-app-lib > request > hawk:
+        patched: '2019-05-07T03:31:08.319Z'
+  'npm:hoek:20180212':
+    - ionic > ionic-app-lib > cordova-lib > npm > request > hawk > sntp > hoek:
+        patched: '2019-05-07T03:31:08.319Z'
+    - ionic > ionic-app-lib > cordova-lib > npm > request > hawk > boom > hoek:
+        patched: '2019-05-07T03:31:08.319Z'
+    - ionic > ionic-app-lib > cordova-lib > npm > node-gyp > request > hawk > hoek:
+        patched: '2019-05-07T03:31:08.319Z'
+    - ionic > ionic-app-lib > cordova-lib > npm > request > hawk > cryptiles > boom > hoek:
+        patched: '2019-05-07T03:31:08.319Z'
+    - ionic > ionic-app-lib > cordova-lib > npm > node-gyp > request > hawk > boom > hoek:
+        patched: '2019-05-07T03:31:08.319Z'
+    - ionic > ionic-app-lib > cordova-lib > npm > node-gyp > request > hawk > sntp > hoek:
+        patched: '2019-05-07T03:31:08.319Z'
+    - ionic > ionic-app-lib > cordova-lib > npm > node-gyp > request > hawk > cryptiles > boom > hoek:
+        patched: '2019-05-07T03:31:08.319Z'
+    - ionic > ionic-app-lib > cordova-lib > npm > request > hawk > hoek:
+        patched: '2019-05-07T03:31:08.319Z'
+  'npm:http-signature:20150122':
+    - ionic > ionic-app-lib > cordova-lib > request > http-signature:
+        patched: '2019-05-07T03:31:08.319Z'
+    - ionic > ionic-app-lib > request > http-signature:
+        patched: '2019-05-07T03:31:08.319Z'
+  'npm:lodash:20180130':
+    - ionic > ionic-app-lib > cordova-lib > cordova-common > plist > xmlbuilder > lodash:
+        patched: '2019-05-07T03:31:08.319Z'
+    - cordova > cordova-common > plist > xmlbuilder > lodash:
+        patched: '2019-05-07T03:31:08.319Z'
+    - cordova > cordova-lib > cordova-common > plist > xmlbuilder > lodash:
+        patched: '2019-05-07T03:31:08.319Z'
+    - ionic > ionic-app-lib > cordova-lib > plist > xmlbuilder > lodash:
+        patched: '2019-05-07T03:31:08.319Z'
+    - cordova > cordova-lib > cordova-fetch > cordova-common > plist > xmlbuilder > lodash:
+        patched: '2019-05-07T03:31:08.319Z'
+    - cordova > cordova-lib > plist > xmlbuilder > lodash:
+        patched: '2019-05-07T03:31:08.319Z'
+    - ionic > ionic-app-lib > cheerio > lodash:
+        patched: '2019-05-07T03:31:08.319Z'
+  'npm:mime:20170907':
+    - express > accepts > mime:
+        patched: '2019-05-07T03:31:08.319Z'
+    - ionic > ionic-app-lib > form-data > mime:
+        patched: '2019-05-07T03:31:08.319Z'
+    - ionic > ionic-app-lib > serve-static > send > mime:
+        patched: '2019-05-07T03:31:08.319Z'
+    - ionic > ionic-app-lib > cordova-lib > request > form-data > mime:
+        patched: '2019-05-07T03:31:08.319Z'
+  'npm:minimatch:20160620':
+    - ionic > ionic-app-lib > archiver > file-utils > glob > minimatch:
+        patched: '2019-05-07T03:31:08.319Z'
+    - ionic > ionic-app-lib > archiver > file-utils > findup-sync > glob > minimatch:
+        patched: '2019-05-07T03:31:08.319Z'
+    - ionic > gulp > vinyl-fs > glob-stream > minimatch:
+        patched: '2019-05-07T03:31:08.319Z'
+    - ionic > ionic-app-lib > cordova-lib > cordova-js > browserify > glob > minimatch:
+        patched: '2019-05-07T03:31:08.319Z'
+    - ionic > ionic-app-lib > archiver > file-utils > minimatch:
+        patched: '2019-05-07T03:31:08.319Z'
+    - ionic > gulp > vinyl-fs > glob-watcher > gaze > globule > minimatch:
+        patched: '2019-05-07T03:31:08.319Z'
+    - ionic > gulp > vinyl-fs > glob-watcher > gaze > globule > glob > minimatch:
+        patched: '2019-05-07T03:31:08.319Z'
+  'npm:ms:20151024':
+    - ionic > ionic-app-lib > connect > debug > ms:
+        patched: '2019-05-07T03:31:08.319Z'
+    - ionic > ionic-app-lib > serve-static > send > ms:
+        patched: '2019-05-07T03:31:08.319Z'
+    - ionic > ionic-app-lib > connect > finalhandler > debug > ms:
+        patched: '2019-05-07T03:31:08.319Z'
+    - ionic > ionic-app-lib > serve-static > send > debug > ms:
+        patched: '2019-05-07T03:31:08.319Z'
+    - ionic > ionic-app-lib > finalhandler > debug > ms:
+        patched: '2019-05-07T03:31:08.319Z'
+  'npm:qs:20140806-1':
+    - ionic > ionic-app-lib > tiny-lr-fork > qs:
+        patched: '2019-05-07T03:31:08.319Z'
+  'npm:request:20160119':
+    - ionic > ionic-app-lib > cordova-lib > request:
+        patched: '2019-05-07T03:31:08.319Z'
+    - ionic > ionic-app-lib > prompt > winston > request:
+        patched: '2019-05-07T03:31:08.319Z'
+    - ionic > ionic-app-lib > request:
+        patched: '2019-05-07T03:31:08.319Z'
+  'npm:semver:20150403':
+    - ionic > ionic-app-lib > semver:
+        patched: '2019-05-07T03:31:08.319Z'
+  'npm:send:20151103':
+    - ionic > ionic-app-lib > serve-static > send:
+        patched: '2019-05-07T03:31:08.319Z'
+  'npm:serve-static:20150113':
+    - ionic > ionic-app-lib > serve-static:
+        patched: '2019-05-07T03:31:08.319Z'
+  'npm:tar:20151103':
+    - ionic > ionic-app-lib > cordova-lib > tar:
+        patched: '2019-05-07T03:31:08.319Z'
+  'npm:tunnel-agent:20170305':
+    - ionic > ionic-app-lib > request > tunnel-agent:
+        patched: '2019-05-07T03:31:08.319Z'
+    - ionic > ionic-app-lib > cordova-lib > request > tunnel-agent:
+        patched: '2019-05-07T03:31:08.319Z'
+    - ionic > ionic-app-lib > cordova-lib > npm > request > tunnel-agent:
+        patched: '2019-05-07T03:31:08.319Z'
+  'npm:uglify-js:20151024':
+    - jade > constantinople > uglify-js:
+        patched: '2019-05-07T03:31:08.319Z'
+    - jade > transformers > uglify-js:
+        patched: '2019-05-07T03:31:08.319Z'
