@@ -1,0 +1,50 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.19.0
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:hawk:20160119':
+    - ionic > ionic-app-lib > cordova-lib > request > hawk:
+        patched: '2021-01-09T03:40:37.695Z'
+  'npm:hoek:20180212':
+    - ionic > ionic-app-lib > cordova-lib > npm > request > hawk > hoek:
+        patched: '2021-01-09T03:40:37.695Z'
+    - ionic > ionic-app-lib > cordova-lib > npm > request > hawk > boom > hoek:
+        patched: '2021-01-09T03:40:37.695Z'
+    - ionic > ionic-app-lib > cordova-lib > npm > request > hawk > sntp > hoek:
+        patched: '2021-01-09T03:40:37.695Z'
+    - ionic > ionic-app-lib > cordova-lib > npm > node-gyp > request > hawk > hoek:
+        patched: '2021-01-09T03:40:37.695Z'
+    - ionic > ionic-app-lib > cordova-lib > npm > request > hawk > cryptiles > boom > hoek:
+        patched: '2021-01-09T03:40:37.695Z'
+    - ionic > ionic-app-lib > cordova-lib > npm > node-gyp > request > hawk > boom > hoek:
+        patched: '2021-01-09T03:40:37.695Z'
+    - ionic > ionic-app-lib > cordova-lib > npm > node-gyp > request > hawk > sntp > hoek:
+        patched: '2021-01-09T03:40:37.695Z'
+    - ionic > ionic-app-lib > cordova-lib > npm > node-gyp > request > hawk > cryptiles > boom > hoek:
+        patched: '2021-01-09T03:40:37.695Z'
+  'npm:http-signature:20150122':
+    - ionic > ionic-app-lib > cordova-lib > request > http-signature:
+        patched: '2021-01-09T03:40:37.695Z'
+  'npm:lodash:20180130':
+    - ionic > ionic-app-lib > cordova-lib > plist > xmlbuilder > lodash:
+        patched: '2021-01-09T03:40:37.695Z'
+    - ionic > ionic-app-lib > cordova-lib > cordova-common > plist > xmlbuilder > lodash:
+        patched: '2021-01-09T03:40:37.695Z'
+  'npm:mime:20170907':
+    - ionic > ionic-app-lib > cordova-lib > request > form-data > mime:
+        patched: '2021-01-09T03:40:37.695Z'
+  'npm:minimatch:20160620':
+    - ionic > ionic-app-lib > cordova-lib > cordova-js > browserify > glob > minimatch:
+        patched: '2021-01-09T03:40:37.695Z'
+  'npm:request:20160119':
+    - ionic > ionic-app-lib > cordova-lib > request:
+        patched: '2021-01-09T03:40:37.695Z'
+  'npm:tar:20151103':
+    - ionic > ionic-app-lib > cordova-lib > tar:
+        patched: '2021-01-09T03:40:37.695Z'
+  'npm:tunnel-agent:20170305':
+    - ionic > ionic-app-lib > cordova-lib > request > tunnel-agent:
+        patched: '2021-01-09T03:40:37.695Z'
+    - ionic > ionic-app-lib > cordova-lib > npm > request > tunnel-agent:
+        patched: '2021-01-09T03:40:37.695Z'
